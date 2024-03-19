@@ -5,7 +5,7 @@ def main():
     frankensteinPath = "books/frankenstein.txt"
     res = readBook(frankensteinPath)
     wordsCount = countWords(res)
-    print("Frankenstein has ", wordsCount," words")
+    print(f"Frankenstein book has {wordsCount} words")
     
 
 
