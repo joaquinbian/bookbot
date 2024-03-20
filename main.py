@@ -1,15 +1,16 @@
-print("hello world")
-
 
 def main():
+    print("--- Begin report of books/frankenstein.txt ---\n")
     frankensteinPath = "books/frankenstein.txt"
     res = readBook(frankensteinPath)
     wordsCount = countWords(res)
-    print(f"Frankenstein book has {wordsCount} words")
-    letterCount = getLetterCount(res)
-    lettersCountList = lettersDictToList(letterCount)
-    lettersCountList.sort(reverse=True, key=sortLettersOn)
-    print(f"letters sorted {lettersCountList}") 
+    print(f"{wordsCount} words was found in the Frankenstein document!\n")
+    characterCount = getCharacterCount(res)
+    charactersCountList = charactersDictToList(characterCount)
+    charactersCountList.sort(reverse=True, key=sortCharactersOn)
+
+    for character in charactersCountList:
+        print(f"character {character["letter"]} was found {character["count"]} times")    
     
 
 
@@ -25,30 +26,35 @@ def countWords(text = " "):
     return textLen
 
 
-def getLetterCount(text = ""):
-    lettersCount = {}
+def getCharacterCount(text = ""):
+    characterCount = {}
     for i in range(len(text)):
-        letter = text[i].lower()
-        if(letter in lettersCount):
-            lettersCount[letter] += 1 
+        character = text[i].lower()
+        if(character in characterCount):
+            characterCount[character] += 1 
         else:
-            lettersCount[letter] = 1
+            characterCount[character] = 1
     
-    return lettersCount
+    return characterCount
 
 
-def lettersDictToList(dict = {}):
-    lettersList = []
-    lettersKeys = dict.keys()
-    for letter in lettersKeys:
-        if(letter.isalpha()):
-            letterObj = {letter: letter, "count": dict[letter]}
-            lettersList.append(letterObj)
+def charactersDictToList(dict = {}):
+    charDictList = []
+    charsList = dict.keys()
+    for character in charsList:
+        if(character.isalpha()):
+            charObj = {"letter": character, "count": dict[character]}
+            charDictList.append(charObj)
     
-    return lettersList
+    return charDictList
 
 
-def sortLettersOn(dict):
+def sortCharactersOn(dict):
     return dict["count"]
+    #return dict["character"]
+    #lo de arriba haria que se ordenen en orden alfabetico
+    #esta funcion, para el key de sort, devuelve una key para
+    #que sort use sus valores en el obj. para ordenar la lista
+
 
 main()
