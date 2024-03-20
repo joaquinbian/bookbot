@@ -10,7 +10,7 @@ def main():
     charactersCountList.sort(reverse=True, key=sortCharactersOn)
 
     for character in charactersCountList:
-        print(f"character {character["letter"]} was found {character["count"]} times")    
+        print(f"character {character["character"]} was found {character["count"]} times")    
     
 
 
@@ -43,7 +43,7 @@ def charactersDictToList(dict = {}):
     charsList = dict.keys()
     for character in charsList:
         if(character.isalpha()):
-            charObj = {"letter": character, "count": dict[character]}
+            charObj = {"character": character, "count": dict[character]}
             charDictList.append(charObj)
     
     return charDictList
