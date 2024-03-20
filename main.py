@@ -7,7 +7,9 @@ def main():
     wordsCount = countWords(res)
     print(f"Frankenstein book has {wordsCount} words")
     letterCount = getLetterCount(res)
-    print(f"letters count in frankenstein {letterCount}")
+    lettersCountList = lettersDictToList(letterCount)
+    lettersCountList.sort(reverse=True, key=sortLettersOn)
+    print(f"letters sorted {lettersCountList}") 
     
 
 
@@ -34,5 +36,19 @@ def getLetterCount(text = ""):
     
     return lettersCount
 
+
+def lettersDictToList(dict = {}):
+    lettersList = []
+    lettersKeys = dict.keys()
+    for letter in lettersKeys:
+        if(letter.isalpha()):
+            letterObj = {letter: letter, "count": dict[letter]}
+            lettersList.append(letterObj)
+    
+    return lettersList
+
+
+def sortLettersOn(dict):
+    return dict["count"]
 
 main()
